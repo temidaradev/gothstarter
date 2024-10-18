@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"gothstarter/views/home"
+	"main/views/home"
 	"net/http"
 )
 

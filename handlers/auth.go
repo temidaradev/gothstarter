@@ -1,10 +1,14 @@
 package handlers
 
 import (
-	"gothstarter/views/auth"
+	"main/views/auth"
 	"net/http"
 )
 
-func HandleLoginIndex(w http.ResponseWriter, r *http.Request) error {
+func HandleLogin(w http.ResponseWriter, r *http.Request) error {
 	return Render(w, r, auth.Login())
+}
+
+func HandleSignup(w http.ResponseWriter, r *http.Request) error {
+	return Render(w, r, auth.Signup())
 }

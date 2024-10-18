@@ -1,9 +1,9 @@
 package main
 
 import (
-	"gothstarter/handlers"
 	"log"
 	"log/slog"
+	"main/handlers"
 	"net/http"
 	"os"
 
@@ -15,13 +15,15 @@ func main() {
 	if err := godotenv.Load(); err != nil {
 		log.Fatal(err)
 	}
+
 	router := chi.NewMux()
 
 	router.Handle("/*", public())
 	router.Get("/", handlers.Make(handlers.HandleHome))
-	router.Get("/login", handlers.Make(handlers.HandleLoginIndex))
+	router.Get("/login", handlers.Make(handlers.HandleLogin))
+	router.Get("/signup", handlers.Make(handlers.HandleSignup))
 
 	listenAddr := os.Getenv("LISTEN_ADDR")
-	slog.Info("HTTP server started", "listenAddr", listenAddr)
+	slog.Info("HTTPS Server Started", "listenAddr", listenAddr)
 	http.ListenAndServe(listenAddr, router)
 }
